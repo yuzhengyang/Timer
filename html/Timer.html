@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="utf-8">
+		<title>计时器</title>
+		<script type="text/javascript" src="js/timer.js"></script>
+	</head>
+	<script>
+		var tCount = 0;
+		var tFlag = 0;
+		var tPass = 0;
+		var tContinue = true;
+		// 计时器核心代码
+		function timer() {
+			if (tFlag != 0) {
+				var tNew = new Date().getTime();
+				var tempPass = tNew - tFlag;
+				if (tempPass > 0 && tempPass < 1000) {
+					tPass = tPass + tempPass;
+					tFlag = tNew;
+				}
+			} else {
+				tFlag = new Date().getTime();
+			}
+			var tShow = tCount - tPass;
+			if (tShow <= 0) {
+				tShow = 0;
+				tContinue = false;
+			}
+			show(tShow);
+			if (tContinue) {
+				setTimeout("timer()", 100);
+			} else {
+				tFlag = 0;
+			}
+		}
+		// 开始功能
+		function begin() {
+			//alert("begin");
+			tContinue = true;
+			timer('ptime');
+		}
+		// 暂停功能
+		function wait() {
+			//alert("wait");
+			tContinue = false;
+		}
+		// 复位功能
+		function reset() {
+			//alert("reset");
+			tCount = document.getElementById("settime").value * 1000;
+			tContinue = false;
+			tFlag = 0;
+			tPass = 0;
+			var tShow = tCount;
+			show(tShow);
+		}
+		// 时间显示算法
+		function show(tShow) {
+			var ml = pad(Math.floor((tShow % 1000) / 100), 1);
+			var sc = pad(Math.floor((tShow / 1000) % 60), 2);
+			var mi = pad(Math.floor((tShow / 1000 / 60) % 60), 2);
+			var hr = pad(Math.floor((tShow / 1000 / 60 / 60) % 24), 2);
+			var dy = pad(Math.floor(tShow / 1000 / 60 / 60 / 24), 2);
+			//			var info = dy + "天" + hr + "时" + mi + "分" + sc + "秒" + ml + "毫秒";
+			var info = mi + ":" + sc;
+			document.getElementById("ptime").innerHTML = info;
+		}
+		// 数字补长方法
+		function pad(num, n) {
+			var len = num.toString().length;
+			while (len < n) {
+				num = "0" + num;
+				len++;
+			}
+			return num;
+		}
+		// 修改标题文本
+		function setTitleName() {
+			var name = document.getElementById("titleNameInput").value;
+			document.getElementById("titleName").innerHTML = name;
+		}
+		// 初始化窗口
+		window.onload = function() {
+			var screenWidth = document.body.scrollWidth;
+			var screenHeight = document.body.scrollHeight;
+			//alert("欢迎使用计时器，正在检测屏幕大小：" + screenWidth + " - " + screenHeight);
+			//var heightUnit = screenHeight / 10;
+			//alert(heightUnit);
+			var spaceHeight = 20;
+			var titleHeight = 222;
+			var controlHeight = titleHeight * 0.9;
+			var contentHeight = screenHeight - titleHeight - controlHeight - spaceHeight;
+			document.getElementById("title").style.height = titleHeight + "px";
+			document.getElementById("title").style.lineHeight = titleHeight + "px";
+			document.getElementById("content").style.height = contentHeight + "px";
+			document.getElementById("content").style.lineHeight = contentHeight + "px";
+			document.getElementById("control").style.height = controlHeight + "px";
+			document.getElementById("control").style.lineHeight = controlHeight + "px";
+			reset();
+			setTitleName();
+		}
+	</script>
+
+	<body style="background-color: #373c64;color: #ffffff;">
+		<div id="title" style="padding-left: 20px;font-size: 20px;font-weight: bold;overflow: hidden;">
+			<div style="float: left;">
+				<img src="http://ecmb.bdimg.com/tam-ogel/6a6fcb68187423def415073a1a41ec13_222_222.jpg" />
+			</div>
+			<div id="titleName" style="float: left;font-size: 40px;padding-top: 25px;">
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="content">
+			<div id="ptime" style="text-align: center;font-size: 300px;font-weight: bold;">10:00</div>
+		</div>
+		<div id="control" style="text-align: center;">
+			<input type="button" value="开始" onclick="begin()" />
+			<input type="button" value="暂停" onclick="wait()" />
+			<input type="button" value="复位" onclick="reset()" />
+			<input type="number" id="settime" value="600" style="width:50px ;" />
+			<input id="titleNameInput" type="text" value="辩论计时器" style="width:100px;" onchange="setTitleName()" />
+		</div>
+	</body>
+
+</html>
