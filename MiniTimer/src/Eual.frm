@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}#1.1#0"; "shdocvw.dll"
 Object = "{6BF52A50-394A-11D3-B153-00C04F79FAA6}#1.0#0"; "wmp.dll"
 Begin VB.Form Eual 
    BackColor       =   &H00F0F0F0&
@@ -26,31 +25,6 @@ Begin VB.Form Eual
    ScaleHeight     =   6135
    ScaleWidth      =   7740
    ShowInTaskbar   =   0   'False
-   Begin SHDocVwCtl.WebBrowser WebBrowser1 
-      Height          =   2895
-      Left            =   3000
-      TabIndex        =   4
-      Top             =   3000
-      Width           =   4575
-      ExtentX         =   8070
-      ExtentY         =   5106
-      ViewMode        =   0
-      Offline         =   0
-      Silent          =   0
-      RegisterAsBrowser=   0
-      RegisterAsDropTarget=   1
-      AutoArrange     =   0   'False
-      NoClientEdge    =   0   'False
-      AlignLeft       =   0   'False
-      NoWebView       =   0   'False
-      HideFileNames   =   0   'False
-      SingleClick     =   0   'False
-      SingleSelection =   0   'False
-      NoFolders       =   0   'False
-      Transparent     =   0   'False
-      ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
-      Location        =   "http:///"
-   End
    Begin VB.Timer Timer_KeepFore 
       Interval        =   1
       Left            =   960
@@ -379,7 +353,6 @@ clock_state_allow = True '允许倒转时钟
 musicprompt = True '不允许使用声音提示
 shutdownable = False '不允许关机
 
-'WebBrowser1.Navigate "http://blog.csdn.net/arrowzz"
 
 End Sub
 
