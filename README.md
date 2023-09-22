@@ -3,11 +3,11 @@
 
 ## VB.Equal.Timer
 
-![image](https://github.com/yuzhengyang/Timer/blob/master/MiniTimer/doc/20170119223338.png?raw=true)
+![image](https://github.com/yuzhengyang/Timer/blob/master/MiniTimer/doc/app-main.png?raw=true)
 
-![image](https://github.com/yuzhengyang/Timer/blob/master/MiniTimer/doc/20170119211754.png?raw=true)
+![image](https://github.com/yuzhengyang/Timer/blob/master/MiniTimer/doc/app-option.png?raw=true)
 
-![image](https://github.com/yuzhengyang/Timer/blob/master/MiniTimer/doc/20170119211710.png?raw=true)
+![image](https://github.com/yuzhengyang/Timer/blob/master/MiniTimer/doc/app-help.png?raw=true)
 
 ## Html.Timer
 
